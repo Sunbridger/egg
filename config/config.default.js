@@ -17,11 +17,7 @@ module.exports = appInfo => {
 
   // add your middleware config here
   config.middleware = [];
-
-  // add your user config here
-  const userConfig = {
-    // myAppName: 'egg',
-  };
+    // 使用sequelize操作数据库的
   config.sequelize = {
     dialect: 'mysql',
     host: '127.0.0.1',
@@ -30,9 +26,24 @@ module.exports = appInfo => {
     password: '123456',
     database: 'egg',
   };
+    // 使用原本mysql操作
+  config.mysql = {
+    // 单数据库信息配置
+    client: {
+        // host
+        host: '127.0.0.1',
+        // 端口号
+        port: 3306,
+        // 用户名
+        user: 'root',
+        // 密码
+        password: '123456',
+        // 数据库名
+        database: 'egg',
+    }
+};
 
   return {
     ...config,
-    ...userConfig,
   };
 };

@@ -1,6 +1,7 @@
 'use strict';
 
 const Controller = require('egg').Controller;
+const project = require('../model/project');
 
 class HomeController extends Controller {
     async look() {
@@ -10,10 +11,12 @@ class HomeController extends Controller {
         ctx.body = await ctx.model.User.findAll(query);
     }
     async add() {
-        const { ctx } = this;
+        const { ctx, app } = this;
         const { name, age } = ctx.request.query; // get请求获取参数
         // const { name, age } = ctx.request.body; // post请求获取参数
         const user = await ctx.model.User.create({ name, age });
+        // 只能这样动态创建表么？？？？
+        await this.app.mysql.query(project.createTable('xxxxxxx'))
         ctx.status = 201;
         ctx.body = user;
     }
