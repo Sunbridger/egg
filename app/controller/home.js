@@ -2,6 +2,7 @@
 
 const Controller = require('egg').Controller;
 const project = require('../model/project');
+const fs = require('fs');
 
 class HomeController extends Controller {
     async look() {
@@ -45,6 +46,11 @@ class HomeController extends Controller {
   
       await user.destroy();
       ctx.status = 200;
+    }
+    async get() {
+        // fs读取默认是项目的根目录
+        const results = await fs.readFileSync('./README.md');
+        this.ctx.body = results;
     }
 }
 
