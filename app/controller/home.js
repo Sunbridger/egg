@@ -52,6 +52,14 @@ class HomeController extends Controller {
         const results = await fs.readFileSync('./README.md');
         this.ctx.body = results;
     }
+    async newTable() {
+        const { ctx } = this;
+        const u = await ctx.model.User.create({
+            name: 'xxxx',
+            age: 22
+        });
+        ctx.body = u;
+    }
 }
 
 module.exports = HomeController;
