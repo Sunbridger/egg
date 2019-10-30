@@ -23,7 +23,7 @@ module.exports = appInfo => {
     host: '127.0.0.1',
     port: 3306,
     username: 'root',
-    password: '123456',
+    // password: '123456',
     database: 'egg',
   };
     // 使用原本mysql操作
@@ -37,7 +37,7 @@ module.exports = appInfo => {
         // 用户名
         user: 'root',
         // 密码
-        password: '123456',
+        // password: '123456',
         // 数据库名
         database: 'egg',
     }
