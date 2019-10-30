@@ -7,9 +7,9 @@ const fs = require('fs');
 class HomeController extends Controller {
     async look() {
         const { ctx } = this;
-        // const res = await ctx.service.home.find();
-        const query = { id: 30};
-        ctx.body = await ctx.model.User.findAll(query);
+        // const query = { id: 30};
+        ctx.body = await ctx.service.home.find();
+        // ctx.body = await ctx.model.User.findAll(query);
     }
     async add() {
         const { ctx, app } = this;
