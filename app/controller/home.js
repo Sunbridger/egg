@@ -8,7 +8,7 @@ class HomeController extends Controller {
     async look() {
         const { ctx } = this;
         // const query = { id: 30};
-        console.log('测试测试 http://47.96.149.250:8080/github-webhook/ ');
+        console.log('测试测试 npm http://47.96.149.250:8080/github-webhook/ ');
         ctx.body = await ctx.service.home.find();
         // ctx.body = await ctx.model.User.findAll(query);
     }
