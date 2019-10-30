@@ -8,6 +8,7 @@ class HomeController extends Controller {
     async look() {
         const { ctx } = this;
         // const query = { id: 30};
+        console.log('测试');
         ctx.body = await ctx.service.home.find();
         // ctx.body = await ctx.model.User.findAll(query);
     }
