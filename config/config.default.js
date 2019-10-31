@@ -41,7 +41,7 @@ module.exports = appInfo => {
         // 数据库名
         database: 'egg',
     }
-};  //sudo 权限问题？
+};  //sudo 权限问题？ 依旧错误
     // config.cluster = {
     //     listen: {
     //     port: 80,
