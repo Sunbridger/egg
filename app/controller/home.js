@@ -50,8 +50,10 @@ class HomeController extends Controller {
     }
     async get() {
         // fs读取默认是项目的根目录
-        const results = await fs.readFileSync('./README.md');
-        this.ctx.body = results;
+        // const results = await fs.readFileSync('./README.md');
+        this.ctx.body = {
+            r: 'asdasda'
+        };
     }
     async newTable() {
         const { ctx } = this;
