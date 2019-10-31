@@ -52,7 +52,7 @@ class HomeController extends Controller {
         // fs读取默认是项目的根目录
         // const results = await fs.readFileSync('./README.md');
         this.ctx.body = {
-            r: 'asdasda'
+            data: '....'
         };
     }
     async newTable() {
