@@ -42,11 +42,6 @@ module.exports = appInfo => {
         database: 'egg',
     }
 };
-// config.cluster = {
-//     listen: {
-//         port: 80
-//     }
-// };
 
   return {
     ...config,
