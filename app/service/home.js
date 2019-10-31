@@ -5,8 +5,8 @@ const Service = require('egg').Service;
 class HomeServicer extends Service {
   async find() {
     return {
-        name: 'xxx',
-        age: 20
+        name: 'sunbeidgr',
+        age: 20222
       };
   }
 }
