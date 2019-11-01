@@ -13,7 +13,7 @@ module.exports = appInfo => {
         database: 'egg',
     };
     config.cors = {
-        origin: 'http://localhost:8080',
+        origin: '*',
         allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
         credentials: true
     };

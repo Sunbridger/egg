@@ -6,10 +6,10 @@ class UserController extends Controller {
         ctx.body = await ctx.service.user.get();
     }
 
-  async create() {
-    const ctx = this.ctx;
-    ctx.body = await ctx.service.user.create();
-  }
+    async create() {
+        const ctx = this.ctx;
+        ctx.body = await ctx.service.user.create();
+    }
 }
 
 module.exports = UserController;
