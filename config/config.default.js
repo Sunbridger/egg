@@ -11,6 +11,17 @@ module.exports = appInfo => {
         password: '123456',
         database: 'egg',
     };
+    config.cors = {
+        origin: 'http://47.96.149.250:3000', // 正式外网环境
+        allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
+        credentials: true
+    };
+    config.security = {
+        csrf: {
+            enable: false
+        },
+        domainWhiteList: ['*']
+    };
     return {
         ...config,
     };
