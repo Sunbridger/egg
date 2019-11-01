@@ -4,8 +4,14 @@ module.exports = app => {
         id: { type: INTEGER, primaryKey: true, autoIncrement: true },
         name: STRING(30),
         age: INTEGER,
-        created_at: DATE,
-        updated_at: DATE,
+        createdAt: {
+            type: DATE,
+            field: 'created_at'
+        },
+        updatedAt: {
+            type: DATE,
+            field: 'updated_at',
+        },
     });
     return User;
 };
