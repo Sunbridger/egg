@@ -1,3 +1,4 @@
+// 测试环境
 module.exports = appInfo => {
     const config = exports = {};
     config.keys = appInfo.name + '_1571196274937_2647';
@@ -12,7 +13,7 @@ module.exports = appInfo => {
         database: 'egg',
     };
     config.cors = {
-        origin: 'http://47.96.149.250:3000', // 正式外网环境
+        origin: 'http://localhost:8080',
         allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
         credentials: true
     };
