@@ -3,14 +3,18 @@
 const Service = require('egg').Service;
 
 class HomeServicer extends Service {
-    async get() {
-        const result = await this.ctx.model.User.findAll();
+    async get(params) {
+        const { index, pageSize } = params;
+        const result = await this.ctx.model.Bangjie.findAll({
+            limit: parseInt(pageSize),
+            offset: parseInt(index)*parseInt(pageSize)
+        });
         return result;
     }
     async create() {
         const { ctx } = this;
         const { name, age } = ctx.request.query;
-        return await ctx.model.User.create({ name, age });
+        return await ctx.model.Bangjie.create({ name, age });
     }
 }
 

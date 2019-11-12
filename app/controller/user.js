@@ -3,7 +3,7 @@ const Controller = require('egg').Controller;
 class UserController extends Controller {
     async get() {
         const { ctx } = this;
-        ctx.body = await ctx.service.user.get();
+        ctx.body = await ctx.service.user.get(ctx.query);
     }
 
     async create() {
