@@ -24,6 +24,14 @@ class HomeServicer extends Service {
         });
         return result;
     }
+    async gettaobao(params) {
+        const { index, pageSize } = params;
+        const result = await this.ctx.model.Taobao.findAll({
+            limit: parseInt(pageSize),
+            offset: parseInt(index)*parseInt(pageSize)
+        });
+        return result;
+    }
 }
 
 module.exports = HomeServicer;
