@@ -1,9 +1,11 @@
 const Controller = require('egg').Controller;
-
 class UserController extends Controller {
     async get() {
         const { ctx } = this;
-        ctx.body = await ctx.service.user.get(ctx.query);
+        // ctx.body = await ctx.service.user.get(ctx.query);
+        ctx.body = {
+            msg: '服务开启'
+        }
     }
 
     async create() {
@@ -19,6 +21,12 @@ class UserController extends Controller {
     async gettaobao() {
         const { ctx } = this;
         ctx.body = await ctx.service.user.gettaobao(ctx.query);
+    }
+
+    async getcap() {
+        const { ctx } = this;
+        ctx.set('Content-Type', 'image/svg+xml');
+        ctx.body = require('svg-captcha').create();
     }
 }
 

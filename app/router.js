@@ -6,4 +6,5 @@ module.exports = app => {
     router.get('/add', controller.user.create);
     router.get('/me', controller.user.getme);
     router.get('/mall', controller.user.gettaobao);
+    router.get('/getcap', controller.user.getcap);
 };
