@@ -22,6 +22,7 @@
     "egg-mock": "^3.21.0",
     "eslint": "^5.13.0",
     "eslint-config-egg": "^7.1.0",
+    "puppeteer": "^2.0.0",
     "svg-captcha": "^1.4.0"
   },
   "engines": {
