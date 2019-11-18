@@ -24,6 +24,12 @@ module.exports = appInfo => {
         },
         domainWhiteList: ['*']
     };
+    config.static = {
+        maxAge: 31536000,
+        prefix: '',
+        dir: require('path').resolve(__dirname, '../assets/'),
+        dynamic: true
+    };
     return {
         ...config,
     };
