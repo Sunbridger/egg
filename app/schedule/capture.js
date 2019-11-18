@@ -29,10 +29,10 @@ module.exports = {
       immediate: true
     },
     async task(ctx) {
-        const name = new Date().toString() + '.jpg';
-        await scrape(name);
-        const url = 'http://47.96.149.250:7001/' + name;
-        await ctx.model.Imgs.create({url});
+        // const name = new Date().toString() + '.jpg';
+        // await scrape(name);
+        // const url = 'http://47.96.149.250:7001/' + name;
+        // await ctx.model.Imgs.create({url});
         ctx.logger.info('定时器任务执行完成');
     }
 };
