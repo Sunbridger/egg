@@ -20,7 +20,7 @@ async function scrape(imgname) {
 
 module.exports = {
     schedule: {
-      interval: '6m', // 60 分钟间隔
+      interval: '6m', // 6分钟间隔
       type: 'all', // 指定所有的 worker 都需要执行
       immediate: true
     },
