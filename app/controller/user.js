@@ -2,10 +2,10 @@ const Controller = require('egg').Controller;
 class UserController extends Controller {
     async get() {
         const { ctx } = this;
-        // ctx.body = await ctx.service.user.get(ctx.query);
-        ctx.body = {
-            msg: '服务开启'
-        }
+        ctx.body = await ctx.service.user.get(ctx.query);
+        // ctx.body = {
+        //     msg: '服务开启'
+        // }
     }
 
     async create() {
