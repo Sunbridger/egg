@@ -30,6 +30,7 @@ module.exports = appInfo => {
         dir: require('path').resolve(__dirname, '../assets/'),
         dynamic: true
     };
+    config.domain = 'http://sunbridger.top:7001/';
     return {
         ...config,
     };

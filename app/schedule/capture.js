@@ -24,17 +24,19 @@ async function scrape(imgname) {
 }
 
 
-module.exports = {
-    schedule: {
-      interval: '10m', // 6分钟间隔
-      type: 'all', // 指定所有的 worker 都需要执行
-      immediate: true
-    },
-    async task(ctx) {
-        const name = new Date().toString() + '.jpg';
-        await scrape(name);
-        const url = 'http://47.96.149.250:7001/' + name;
-        await ctx.model.Imgs.create({url});
-        ctx.logger.info('定时器任务执行完成');
+module.exports = app => {
+    return {
+        schedule: {
+            interval: '1m', // 6分钟间隔
+            type: 'all', // 指定所有的 worker 都需要执行
+            immediate: true
+          },
+          async task(ctx) {
+              const name = new Date().toString() + '.jpg';
+              await scrape(name);
+              const url = app.config.domain + name;
+              await ctx.model.Imgs.create({url});
+              ctx.logger.info('定时器任务执行完成');
+          }
     }
 };
