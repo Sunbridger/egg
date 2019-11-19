@@ -7,17 +7,19 @@ async function scrape(imgname) {
         args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
     const page = await browser.newPage();
-    await page.goto('https://m.weibo.cn/p/index?containerid=106003type%3D25%26t%3D3%26disable_hot%3D1%26filter_type%3Drealtimehot&title=%E5%BE%AE%E5%8D%9A%E7%83%AD%E6%90%9C', {
+    await page.goto('https://m.weibo.cn/p/index?containerid=106003type%3D25%26t%3D3%26disable_hot%3D1%26filter_type%3Drealtimehot&title=%E5%BE%AE%E5%8D%9A%E7%83%AD%E6%90%9C&extparam=pos%3D0_0%26mi_cid%3D100103%26cate%3D10103%26filter_type%3Drealtimehot%26c_type%3D30%26display_time%3D1574150135&luicode=10000011&lfid=231583', {
         timeout: 3000000
     });
     await page.setViewport({
         width: 375,
         height: 667
     });
+    await page.content();
     await page.screenshot({
         path: path(imgname),
         fullPage: true
     });
+    await page.close();
     await browser.close();
 }
 
