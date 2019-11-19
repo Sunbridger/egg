@@ -7,4 +7,5 @@ module.exports = app => {
     router.get('/me', controller.user.getme);
     router.get('/mall', controller.user.gettaobao);
     router.get('/getcap', controller.user.getcap);
+    router.get('/getweibo', controller.user.getweibo);
 };

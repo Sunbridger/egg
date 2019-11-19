@@ -32,6 +32,14 @@ class HomeServicer extends Service {
         });
         return result;
     }
+    async getweibo(params) {
+        const { index, pageSize } = params;
+        const result = await this.ctx.model.Imgs.findAll({
+            limit: parseInt(pageSize),
+            offset: parseInt(index)*parseInt(pageSize)
+        });
+        return result;
+    }
 }
 
 module.exports = HomeServicer;

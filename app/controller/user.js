@@ -25,6 +25,11 @@ class UserController extends Controller {
         ctx.set('Content-Type', 'image/svg+xml');
         ctx.body = require('svg-captcha').create();
     }
+
+    async getweibo() {
+        const { ctx } = this;
+        ctx.body = await ctx.service.user.getweibo(ctx.query);
+    }
 }
 
 module.exports = UserController;
