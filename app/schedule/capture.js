@@ -15,9 +15,9 @@ async function scrape(imgname) {
         height: 667
     });
     await page.content();
+    await page.waitFor(3000);
     await page.screenshot({
-        path: path(imgname),
-        fullPage: true
+        path: path(imgname)
     });
     await page.close();
     await browser.close();
