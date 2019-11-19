@@ -8,7 +8,7 @@ class HomeServicer extends Service {
         const result = await this.ctx.model.Bangjie.findAll({
             limit: parseInt(pageSize),
             offset: parseInt(index)*parseInt(pageSize),
-            order: 'id DESC'
+            order: [['id', 'DESC']]
         });
         return result;
     }
@@ -30,7 +30,7 @@ class HomeServicer extends Service {
         const result = await this.ctx.model.Taobao.findAll({
             limit: parseInt(pageSize),
             offset: parseInt(index)*parseInt(pageSize),
-            order: 'id DESC'
+            order: [['id', 'DESC']]
         });
         return result;
     }
@@ -39,7 +39,7 @@ class HomeServicer extends Service {
         const result = await this.ctx.model.Imgs.findAll({
             limit: parseInt(pageSize),
             offset: parseInt(index)*parseInt(pageSize),
-            order: 'id DESC'
+            order: [['id', 'DESC']]
         });
         return result;
     }
