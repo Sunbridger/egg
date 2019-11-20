@@ -30,6 +30,11 @@ class UserController extends Controller {
         const { ctx } = this;
         ctx.body = await ctx.service.user.getweibo(ctx.query);
     }
+
+    async gethot() {
+        const { ctx } = this;
+        ctx.body = await ctx.service.user.gethot(ctx.query);
+    }
 }
 
 module.exports = UserController;

@@ -43,6 +43,16 @@ class HomeServicer extends Service {
         });
         return result;
     }
+    async gethot(params) {
+        const { index, pageSize } = params;
+        const result = await this.ctx.model.Hots.findAll({
+            limit: parseInt(pageSize),
+            offset: parseInt(index)*parseInt(pageSize),
+            order: [['num', 'DESC']]
+        });
+        return result;
+    }
+
 }
 
 module.exports = HomeServicer;
