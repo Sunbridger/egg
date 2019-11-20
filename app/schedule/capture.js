@@ -13,7 +13,8 @@ async function scrape() {
     await page.content();
     await page.waitFor(3000);
     const result = await page.evaluate(() => {
-        const hots = Array.from(document.querySelectorAll('#app > div:nth-child(1) > div:nth-child(1) > div.card.m-panel.card16.m-col-2 > div > div .m-item-box .m-text-cut')).map(ele => ele.innerText);
+        let hots = Array.from(document.querySelectorAll('#app > div:nth-child(1) > div:nth-child(1) > div.card.m-panel.card16.m-col-2 > div > div .m-item-box .m-text-cut')).map(ele => ele.innerText);
+        hots.pop();
         return hots;
     });
     await page.close();
