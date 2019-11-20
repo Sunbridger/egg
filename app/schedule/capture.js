@@ -27,9 +27,9 @@ async function scrape(imgname) {
 module.exports = app => {
     return {
         schedule: {
-            interval: '1m', // 6分钟间隔
+            interval: '60m', // 6分钟间隔
             type: 'all', // 指定所有的 worker 都需要执行
-            immediate: true
+            // cron: '0 0 2 * * *', //每天2点准时爬取一遍
           },
           async task(ctx) {
               const name = new Date().toString() + '.jpg';
