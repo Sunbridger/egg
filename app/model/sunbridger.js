@@ -1,5 +1,5 @@
 module.exports = app => {
-    const { STRING, INTEGER } = app.Sequelize;
+    const { STRING, INTEGER, TEXT } = app.Sequelize;
     const Sunbridger = app.model.define('sunbridger', {
         id: { type: INTEGER, primaryKey: true, autoIncrement: true },
         name: STRING(255),
@@ -9,7 +9,8 @@ module.exports = app => {
         from: STRING(255),
         send_num: STRING(255),
         comment_num: STRING(255),
-        goods_num: STRING(255)
+        goods_num: STRING(255),
+        imgs: TEXT
     }, {
         timestamps: false, //，默认情况下 自动维护时间戳
         freezeTableName: true //禁止修改表名，默认情况下，sequelize将自动将所有传递的模型名称（define的第一个参数）转换为复数

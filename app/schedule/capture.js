@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 const path = p => require('path').resolve(__dirname, '../../assets', p);
-async function scrape() {
+async function gethotkey() {
     const browser = await puppeteer.launch({
         headless: true,
         dumpio: false,
@@ -22,7 +22,6 @@ async function scrape() {
     return result;
 }
 
-
 module.exports = app => {
     return {
         schedule: {
@@ -31,7 +30,7 @@ module.exports = app => {
             // cron: '0 0 2 * * *', //每天2点准时爬取一遍
         },
         async task(ctx) {
-            const hots = await scrape();
+            const hots = await gethotkey();
             hots.forEach(async text => {
                 const hasText = await ctx.model.Hots.findByPk(text);
                 if (!hasText) {
