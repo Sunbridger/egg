@@ -25,7 +25,7 @@ async function gethotkey() {
 module.exports = app => {
     return {
         schedule: {
-            interval: '10000s', // 6分钟间隔
+            interval: '100s', // 6分钟间隔
             type: 'all', // 指定所有的 worker 都需要执行
             // cron: '0 0 2 * * *', //每天2点准时爬取一遍
         },
