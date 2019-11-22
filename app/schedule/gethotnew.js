@@ -28,7 +28,7 @@ async function gethotnew() {
             let comment_num = node.querySelector('footer > div:nth-child(2) > h4').innerText;
             let goods_num = node.querySelector('footer > div:nth-child(3) > h4').innerText;
             let imgs = '';
-            let imgFlag = node.querySelectorAll('.m-img-box');
+            let imgFlag = node.querySelectorAll('article .m-img-box');
             if (imgFlag) {
                 imgs = JSON.stringify(Array.from(imgFlag).map(el => el.querySelector('img').src));
             }
