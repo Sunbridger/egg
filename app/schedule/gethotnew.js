@@ -34,7 +34,7 @@ async function pageEvaluate(page, index = 1) {
 
 async function gethotnew() {
     const browser = await puppeteer.launch({
-        headless: false,
+        headless: true,
         dumpio: false,
         args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
