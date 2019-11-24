@@ -1,7 +1,7 @@
 const Service = require('egg').Service;
 const puppeteer = require('puppeteer');
 
-async function getTBDeatil(good_url, timewait = 6000) {
+async function getTBDeatil(good_url, timewait = 10000) {
     const browser = await puppeteer.launch({
         headless: true,
         dumpio: false,
