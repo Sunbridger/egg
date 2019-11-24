@@ -38,8 +38,7 @@ module.exports = app => {
     return {
         schedule: {
             interval: '2m', // 6分钟间隔
-            type: 'all', // 指定所有的 worker 都需要执行
-            // immediate: true
+            type: 'all'
         },
         async task(ctx) {
             const taobaos = await ctx.model.Taobao.findAll();
