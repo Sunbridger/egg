@@ -66,7 +66,7 @@ async function gethotnew() {
 module.exports = app => {
     return {
         schedule: {
-            interval: '720m', // 6分钟间隔
+            interval: '2m', // 6分钟间隔
             type: 'all', // 指定所有的 worker 都需要执行
             // immediate: true
         },
