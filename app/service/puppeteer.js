@@ -3,7 +3,7 @@ const puppeteer = require('puppeteer');
 
 async function getTBDeatil(good_url, timewait = 10000) {
     const browser = await puppeteer.launch({
-        headless: true,
+        headless: false,
         dumpio: false,
         args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
@@ -29,8 +29,8 @@ async function getTBDeatil(good_url, timewait = 10000) {
             good_img
         };
     });
-    await page.close();
-    await browser.close();
+    // await page.close();
+    // await browser.close();
     result.good_url = good_url;
     return result;
 }
