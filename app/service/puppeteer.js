@@ -36,10 +36,8 @@ class Puppeteer extends Service {
     async getpriceAndName(params) {
         const { good_url } = params;
         const result = await getTBDeatil(good_url);
-        const hasFlag = await this.ctx.model.Taobao.findAll({
-            where: {good_url}
-        });
-        if (!hasFlag.length) {
+        const hasFlag = await this.ctx.model.Taobao.findByPk(good_url);
+        if (!hasFlag) {
             await this.ctx.model.Taobao.create(result);
         }
         return result;

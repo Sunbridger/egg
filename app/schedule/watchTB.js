@@ -48,8 +48,6 @@ module.exports = app => {
                     const { good_url, tit_price } = good.dataValues;
                     return await watchTB(good_url, tit_price);
                 }));
-                needUpdateArr.forEach(e => console.log(e))
-                console.log(needUpdateArr, 'needUpdateArr');
                 needUpdateArr = needUpdateArr.filter(el => el);
                 needUpdateArr.forEach(async good => {
                     const thisgood = await ctx.model.Taobao.findByPk(good.good_url);
