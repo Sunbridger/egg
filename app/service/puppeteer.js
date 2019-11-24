@@ -12,7 +12,6 @@ async function getTBDeatil(good_url, timewait = 16000) {
         timeout: 300000
     });
     await page.waitFor(timewait);
-    console.log('✅ 正常打开了页面了啊');
     const result = await page.evaluate(() => {
         console.log(document.querySelector('#J_StrPriceModBox > dd > span'), 'sdasdasdadasd');
         let tit_price = document.querySelector('#J_StrPriceModBox > dd > span').innerText;
