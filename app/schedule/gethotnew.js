@@ -68,7 +68,6 @@ module.exports = app => {
         schedule: {
             interval: '2m', // 6分钟间隔
             type: 'all', // 指定所有的 worker 都需要执行
-            // immediate: true
         },
         async task(ctx) {
             const newsArr = await gethotnew();
