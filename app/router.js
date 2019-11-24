@@ -9,5 +9,5 @@ module.exports = app => {
     router.get('/getcap', controller.user.getcap);
     router.get('/getweibo', controller.user.getweibo);
     router.get('/gethot', controller.user.gethot);
-    router.get('/getpriceAndName', controller.puppeteer.getpriceAndName)
+    router.get('/getpriceAndName', controller.puppeteer.getpriceAndName);
 };
