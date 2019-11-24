@@ -37,7 +37,7 @@ async function watchTB(good_url, tit_price) {
 module.exports = app => {
     return {
         schedule: {
-            interval: '2m', // 6分钟间隔
+            interval: '2m',
             type: 'all'
         },
         async task(ctx) {
