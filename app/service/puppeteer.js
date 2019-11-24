@@ -35,12 +35,13 @@ async function getTBDeatil(good_url, timewait = 6000) {
 class Puppeteer extends Service {
     async getpriceAndName(params) {
         const { good_url } = params;
-        const result = await getTBDeatil(good_url);
         const hasFlag = await this.ctx.model.Taobao.findByPk(good_url);
         if (!hasFlag) {
-            await this.ctx.model.Taobao.create(result);
+            const crawresult = await getTBDeatil(good_url);
+            const result = await this.ctx.model.Taobao.create(crawresult);
+            return result;
         }
-        return result;
+        return hasFlag;
     }
 }
 
