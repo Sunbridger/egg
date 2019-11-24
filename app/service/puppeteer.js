@@ -3,7 +3,7 @@ const puppeteer = require('puppeteer');
 
 async function getTBDeatil(good_url, timewait = 16000) {
     const browser = await puppeteer.launch({
-        headless: false,
+        headless: true,
         dumpio: false,
         args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
