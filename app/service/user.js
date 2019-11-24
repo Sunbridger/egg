@@ -30,8 +30,7 @@ class HomeServicer extends Service {
         const { index, pageSize } = params;
         const result = await this.ctx.model.Taobao.findAll({
             limit: parseInt(pageSize),
-            offset: parseInt(index)*parseInt(pageSize),
-            order: [['id', 'DESC']]
+            offset: parseInt(index)*parseInt(pageSize)
         });
         return result;
     }
