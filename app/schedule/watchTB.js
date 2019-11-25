@@ -19,6 +19,7 @@ async function watchTB(good_url, tit_price) {
         }
     } catch (err) {
         console.log('❌ 即将进入下一轮');
+        await page.close();
         errList.push({
             good_url,
             tit_price
@@ -35,10 +36,13 @@ module.exports = app => {
             immediate: true
         },
         async task(ctx) {
+            if (browser) {
+                await browser.close();
+            }
             const taobaos = await ctx.model.Taobao.findAll();
             if (taobaos.length) {
                 browser = await puppeteer.launch({
-                    headless: false,
+                    headless: true,
                     dumpio: false,
                     args: ['--no-sandbox', '--disable-setuid-sandbox']
                 });
