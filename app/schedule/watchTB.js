@@ -38,8 +38,7 @@ module.exports = app => {
     return {
         schedule: {
             interval: '10m',
-            type: 'all',
-            immediate: true
+            type: 'all'
         },
         async task(ctx) {
             console.time('start');

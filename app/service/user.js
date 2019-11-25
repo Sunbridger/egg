@@ -52,6 +52,11 @@ class HomeServicer extends Service {
         });
         return result;
     }
+    async deletetaobao(params) {
+        const { good_url } = params;
+        const good = await this.ctx.model.Taobao.findByPk(good_url);
+        return await good.destroy();
+    }
 
 }
 
