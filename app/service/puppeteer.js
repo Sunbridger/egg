@@ -13,7 +13,6 @@ async function getTBDeatil(good_url, timewait = 16000) {
     });
     await page.waitFor(timewait);
     const result = await page.evaluate(() => {
-        console.log(document.querySelector('#J_StrPriceModBox > dd > span'), 'sdasdasdadasd');
         let tit_price = document.querySelector('#J_StrPriceModBox > dd > span').innerText;
         let good_title = document.querySelector('#J_DetailMeta > div.tm-clear > div.tb-property > div > div.tb-detail-hd > h1').innerText;
         let good_img = document.querySelector('#J_ImgBooth').src;
@@ -25,7 +24,6 @@ async function getTBDeatil(good_url, timewait = 16000) {
     });
     await page.close();
     await browser.close();
-    result.good_url = good_url;
     return result;
 }
 
@@ -35,7 +33,7 @@ class Puppeteer extends Service {
         const hasFlag = await this.ctx.model.Taobao.findByPk(good_url);
         if (!hasFlag) {
             const crawresult = await getTBDeatil(good_url);
-            const result = await this.ctx.model.Taobao.create(crawresult);
+            const result = await this.ctx.model.Taobao.create(Object.assign(crawresult, {good_url}));
             return result;
         }
         return hasFlag;
