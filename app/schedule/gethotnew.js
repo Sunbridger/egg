@@ -66,15 +66,15 @@ async function gethotnew() {
 module.exports = app => {
     return {
         schedule: {
-            interval: '2m', // 6分钟间隔
+            interval: '200m', // 6分钟间隔
             type: 'all', // 指定所有的 worker 都需要执行
         },
         async task(ctx) {
-            const newsArr = await gethotnew();
-            newsArr.forEach(async news => {
-                await ctx.model.Sunbridger.create(news);
-                console.log(`✅ ${news.name}的文章插入完成了`);
-            })
+            // const newsArr = await gethotnew();
+            // newsArr.forEach(async news => {
+            //     await ctx.model.Sunbridger.create(news);
+            //     console.log(`✅ ${news.name}的文章插入完成了`);
+            // })
         }
     }
 };

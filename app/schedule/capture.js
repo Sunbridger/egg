@@ -25,22 +25,22 @@ async function gethotkey() {
 module.exports = app => {
     return {
         schedule: {
-            interval: '5m', // 6分钟间隔
+            interval: '2m', // 6分钟间隔
             type: 'all' // 指定所有的 worker 都需要执行
         },
         async task(ctx) {
-            // const hots = await gethotkey();
-            // hots.forEach(async text => {
-            //     const hasText = await ctx.model.Hots.findByPk(text);
-            //     if (!hasText) {
-            //         await ctx.model.Hots.create({text});
-            //     } else {
-            //         const num = hasText.dataValues.num + 1;
-            //         await hasText.update({
-            //             num
-            //         });
-            //     }
-            // })
+            const hots = await gethotkey();
+            hots.forEach(async text => {
+                const hasText = await ctx.model.Hots.findByPk(text);
+                if (!hasText) {
+                    await ctx.model.Hots.create({text});
+                } else {
+                    const num = hasText.dataValues.num + 1;
+                    await hasText.update({
+                        num
+                    });
+                }
+            })
         }
     }
 };
