@@ -11,20 +11,15 @@ async function watchTB(good_url, tit_price) {
         timeout: 300000
     });
     await page.content();
-    await page.waitFor(10000);
-    const result = await page.evaluate(() => {
-        let new_price = document.querySelector('#J_StrPriceModBox > dd > span').innerText;
-        return {
-            new_price
-        };
-    });
+    await page.waitFor(20000);
+    const new_price = await page.evaluate(() => document.querySelector('#J_StrPriceModBox > dd > span').innerText);
     await page.close();
     await browser.close();
-    if (result.new_price !== tit_price) {
+    if (new_price !== tit_price) {
         console.log('❌ 价格不一样了');
         return {
             good_url,
-            new_price: result.new_price
+            new_price
         }
     }
     console.log('✅ 正常结束咯');
@@ -34,7 +29,8 @@ module.exports = app => {
     return {
         schedule: {
             interval: '10m',
-            type: 'all'
+            type: 'all',
+            immediate: true
         },
         async task(ctx) {
             const taobaos = await ctx.model.Taobao.findAll();
@@ -46,8 +42,9 @@ module.exports = app => {
                 needUpdateArr = needUpdateArr.filter(el => el);
                 needUpdateArr.forEach(async good => {
                     const thisgood = await ctx.model.Taobao.findByPk(good.good_url);
+                    const new_price = thisgood.dataValues.new_price ? `${thisgood.dataValues.new_price},${good.new_price}` : good.new_price;
                     await thisgood.update({
-                        new_price: `${thisgood.dataValues.new_price},${good.new_price}`
+                        new_price
                     });
                     console.log('✅ 更新完成')
                 });
