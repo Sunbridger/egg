@@ -11,6 +11,7 @@ async function getTBDeatil(good_url, timewait = 16000) {
     await page.goto(good_url, {
         timeout: 300000
     });
+    await page.content();
     await page.waitFor(timewait);
     const result = await page.evaluate(() => {
         let tit_price = document.querySelector('#J_StrPriceModBox > dd > span').innerText;
