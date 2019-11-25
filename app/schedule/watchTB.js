@@ -2,20 +2,14 @@ const puppeteer = require('puppeteer');
 const Event = require('events');
 
 let errList = [];
-
+let browser = null;
 async function watchTB(good_url, tit_price) {
-    const browser = await puppeteer.launch({
-        headless: true,
-        dumpio: false,
-        args: ['--no-sandbox', '--disable-setuid-sandbox']
-    });
-    const page = await browser.newPage();
     try {
+        let page = await browser.newPage();
         await page.goto(good_url);
         await page.waitForSelector('#J_StrPriceModBox > dd > span');
         const new_price = await page.evaluate(() => document.querySelector('#J_StrPriceModBox > dd > span').innerText);
         await page.close();
-        await browser.close();
         console.log('✅ 爬取成功');
         if (new_price !== tit_price) {
             return {
@@ -25,7 +19,6 @@ async function watchTB(good_url, tit_price) {
         }
     } catch (err) {
         console.log('❌ 即将进入下一轮');
-        await page.close();
         errList.push({
             good_url,
             tit_price
@@ -38,14 +31,19 @@ module.exports = app => {
     return {
         schedule: {
             interval: '10m',
-            type: 'all'
+            type: 'all',
+            immediate: true
         },
         async task(ctx) {
-            console.time('start');
             const taobaos = await ctx.model.Taobao.findAll();
             if (taobaos.length) {
+                browser = await puppeteer.launch({
+                    headless: false,
+                    dumpio: false,
+                    args: ['--no-sandbox', '--disable-setuid-sandbox']
+                });
                 if (taobaos.length > 6) {
-                    require('events').EventEmitter.defaultMaxListeners = taobaos.length + 10;
+                    Event.EventEmitter.defaultMaxListeners = taobaos.length + 10;
                 }
                 let needUpdateArr = await Promise.all(taobaos.map(async good => {
                     const { good_url, tit_price } = good.dataValues;
@@ -61,6 +59,7 @@ module.exports = app => {
                     arr = arr.filter(el => el);
                     needUpdateArr.push(...arr);
                 }
+                await browser.close();
                 needUpdateArr.forEach(async good => {
                     const thisgood = await ctx.model.Taobao.findByPk(good.good_url);
                     const new_price = thisgood.dataValues.new_price ? `${thisgood.dataValues.new_price},${good.new_price}` : good.new_price;
