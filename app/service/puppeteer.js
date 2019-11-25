@@ -1,18 +1,17 @@
 const Service = require('egg').Service;
 const puppeteer = require('puppeteer');
 
-async function getTBDeatil(good_url, timewait = 16000) {
+async function getTBDeatil(good_url) {
     const browser = await puppeteer.launch({
         headless: true,
         dumpio: false,
         args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
     const page = await browser.newPage();
-    await page.goto(good_url, {
-        timeout: 300000
-    });
-    await page.content();
-    await page.waitFor(timewait);
+    await page.goto(good_url);
+    await page.waitForSelector('#J_StrPriceModBox > dd > span');
+    await page.waitForSelector('#J_DetailMeta > div.tm-clear > div.tb-property > div > div.tb-detail-hd > h1');
+    await page.waitForSelector('#J_ImgBooth');
     const result = await page.evaluate(() => {
         let tit_price = document.querySelector('#J_StrPriceModBox > dd > span').innerText;
         let good_title = document.querySelector('#J_DetailMeta > div.tm-clear > div.tb-property > div > div.tb-detail-hd > h1').innerText;
