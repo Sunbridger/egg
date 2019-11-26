@@ -46,7 +46,7 @@ module.exports = app => {
                     dumpio: false,
                     args: ['--no-sandbox', '--disable-setuid-sandbox']
                 });
-                if (taobaos.length > 6) {
+                if (taobaos.length > 7) {
                     Event.EventEmitter.defaultMaxListeners = taobaos.length + 10;
                 }
                 let needUpdateArr = await Promise.all(taobaos.map(async good => {
