@@ -8,7 +8,19 @@ async function watchTB(good_url, tit_price) {
     try {
         await page.goto(good_url);
         await page.waitForSelector('#J_StrPriceModBox > dd > span');
-        const new_price = await page.evaluate(() => document.querySelector('#J_StrPriceModBox > dd > span').innerText);
+
+        const new_price = await page.evaluate(() => {
+            let topEle = document.querySelector('#J_StrPriceModBox > dd > span');
+            let botEle = document.querySelector('#J_PromoPrice > dd > div > span');
+            let price = '';
+            if (topEle) {
+                price = topEle.innerText;
+            }
+            if (botEle) {
+                price = botEle.innerText;
+            }
+            return price;
+        });
         await page.close();
         console.log('✅ 爬取成功');
         if (new_price !== tit_price) {
@@ -31,7 +43,7 @@ async function watchTB(good_url, tit_price) {
 module.exports = app => {
     return {
         schedule: {
-            interval: '5m',
+            interval: '150s',
             type: 'all',
             immediate: true
         },
