@@ -31,7 +31,7 @@ async function watchTB(good_url, tit_price) {
 module.exports = app => {
     return {
         schedule: {
-            interval: '150s',
+            interval: '5m',
             type: 'all',
             immediate: true
         },
