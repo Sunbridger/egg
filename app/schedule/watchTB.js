@@ -22,7 +22,7 @@ async function watchTB(good_url, tit_price) {
             return price;
         });
         await page.close();
-        console.log('✅ 爬取成功');
+        console.log('✅ 爬取成功咯');
         if (new_price !== tit_price) {
             return {
                 good_url,
