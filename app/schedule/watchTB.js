@@ -4,8 +4,8 @@ const Event = require('events');
 let errList = [];
 let browser = null;
 async function watchTB(good_url, tit_price) {
+    let page = await browser.newPage();
     try {
-        let page = await browser.newPage();
         await page.goto(good_url);
         await page.waitForSelector('#J_StrPriceModBox > dd > span');
         const new_price = await page.evaluate(() => document.querySelector('#J_StrPriceModBox > dd > span').innerText);
