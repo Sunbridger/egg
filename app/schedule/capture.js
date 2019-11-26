@@ -7,11 +7,8 @@ async function gethotkey() {
         args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
     const page = await browser.newPage();
-    await page.goto('https://m.weibo.cn/search?containerid=231583', {
-        timeout: 3000000
-    });
-    await page.content();
-    await page.waitFor(3000);
+    await page.goto('https://m.weibo.cn/search?containerid=231583');
+    await page.waitForSelector('#app > div:nth-child(1) > div:nth-child(1) > div.card.m-panel.card16.m-col-2 > div > div .m-item-box .m-text-cut');
     const result = await page.evaluate(() => {
         let hots = Array.from(document.querySelectorAll('#app > div:nth-child(1) > div:nth-child(1) > div.card.m-panel.card16.m-col-2 > div > div .m-item-box .m-text-cut')).map(ele => ele.innerText);
         hots.pop();
@@ -25,7 +22,7 @@ async function gethotkey() {
 module.exports = app => {
     return {
         schedule: {
-            interval: '1m', // 6分钟间隔
+            interval: '30s', // 6分钟间隔
             type: 'all' // 指定所有的 worker 都需要执行
         },
         async task(ctx) {
