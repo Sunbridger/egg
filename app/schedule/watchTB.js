@@ -2,6 +2,7 @@ const puppeteer = require('puppeteer');
 const Event = require('events');
 
 let errList = [];
+
 let browser = null;
 async function watchTB(good_url, tit_price) {
     let page = await browser.newPage();
