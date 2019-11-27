@@ -5,6 +5,11 @@ class PuppeteerController extends Controller {
         const { ctx } = this;
         ctx.body = await ctx.service.puppeteer.getpriceAndName(ctx.query);
     }
+
+    async getJDinfo() {
+        const { ctx } = this;
+        ctx.body = await ctx.service.puppeteer.getJDinfo(ctx.query);
+    }
 }
 
 module.exports = PuppeteerController;

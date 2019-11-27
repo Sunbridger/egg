@@ -3,24 +3,12 @@ const Event = require('events');
 
 let errList = [];
 let browser = null;
-async function watchTB(good_url, tit_price) {
+async function watchJD(good_url, tit_price) {
     let page = await browser.newPage();
     try {
         await page.goto(good_url);
-        await page.waitForSelector('#J_StrPriceModBox > dd > span');
-
-        const new_price = await page.evaluate(() => {
-            let topEle = document.querySelector('#J_StrPriceModBox > dd > span');
-            let botEle = document.querySelector('#J_PromoPrice > dd > div > span');
-            let price = '';
-            if (topEle) {
-                price = topEle.innerText;
-            }
-            if (botEle) {
-                price = botEle.innerText;
-            }
-            return price;
-        });
+        await page.waitForSelector('#priceSale');
+        const new_price = await page.evaluate(() => document.querySelector('#priceSale').innerText);
         await page.close();
         console.log('✅  页面爬取成功咯');
         if (new_price !== tit_price) {
@@ -43,7 +31,7 @@ async function watchTB(good_url, tit_price) {
 module.exports = app => {
     return {
         schedule: {
-            interval: '30m',
+            interval: '5m',
             type: 'all',
             immediate: true
         },
@@ -63,14 +51,14 @@ module.exports = app => {
                 }
                 let needUpdateArr = await Promise.all(taobaos.map(async good => {
                     const { good_url, tit_price } = good.dataValues;
-                    return await watchTB(good_url, tit_price);
+                    return await watchJD(good_url, tit_price);
                 }));
                 needUpdateArr = needUpdateArr.filter(el => el);
                 while (errList.length) {
                     let arr = await Promise.all(errList.map(async (good, index) => {
                         const { good_url, tit_price } = good;
                         errList.splice(index, 1);
-                        return await watchTB(good_url, tit_price);
+                        return await watchJD(good_url, tit_price);
                     }));
                     arr = arr.filter(el => el);
                     needUpdateArr.push(...arr);

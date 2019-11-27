@@ -10,5 +10,6 @@ module.exports = app => {
     router.get('/getweibo', controller.user.getweibo);
     router.get('/gethot', controller.user.gethot);
     router.get('/getpriceAndName', controller.puppeteer.getpriceAndName);
+    router.get('/getJDinfo', controller.puppeteer.getJDinfo);
     router.get('/deletetaobao', controller.user.deletetaobao);
 };
