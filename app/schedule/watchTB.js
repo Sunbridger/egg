@@ -43,7 +43,7 @@ async function watchTB(good_url, tit_price) {
 module.exports = app => {
     return {
         schedule: {
-            interval: '150s',
+            interval: '30m',
             type: 'all',
             immediate: true
         },
@@ -54,7 +54,7 @@ module.exports = app => {
             const taobaos = await ctx.model.Taobao.findAll();
             if (taobaos.length) {
                 browser = await puppeteer.launch({
-                    headless: true,
+                    headless: false,
                     dumpio: false,
                     args: ['--no-sandbox', '--disable-setuid-sandbox']
                 });
