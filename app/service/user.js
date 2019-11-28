@@ -67,7 +67,7 @@ class HomeServicer extends Service {
                     [Op.gt]: new Date(new Date() - 24 * 60 * 60 * 1000)
                 }
             },
-            limit: 3,
+            limit: 5,
             order: [['num', 'DESC']]
         });
         return result;
