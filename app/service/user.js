@@ -1,6 +1,8 @@
 'use strict';
 
 const Service = require('egg').Service;
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 class HomeServicer extends Service {
     async get(params) {
@@ -56,6 +58,19 @@ class HomeServicer extends Service {
         const { good_url } = params;
         const good = await this.ctx.model.Taobao.findByPk(good_url);
         return await good.destroy();
+    }
+    async todayhot(params) {
+        console.log(params);
+        const result = await this.ctx.model.Hots.findAll({
+            where: {
+                created_at: {
+                    [Op.gt]: new Date(new Date() - 24 * 60 * 60 * 1000)
+                }
+            },
+            limit: 3,
+            order: [['num', 'DESC']]
+        });
+        return result;
     }
 
 }

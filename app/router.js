@@ -12,4 +12,5 @@ module.exports = app => {
     router.get('/getpriceAndName', controller.puppeteer.getpriceAndName);
     router.get('/getJDinfo', controller.puppeteer.getJDinfo);
     router.get('/deletetaobao', controller.user.deletetaobao);
+    router.get('/todayhot', controller.user.todayhot);
 };

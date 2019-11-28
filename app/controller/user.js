@@ -40,6 +40,11 @@ class UserController extends Controller {
         const { ctx } = this;
         ctx.body = await ctx.service.user.deletetaobao(ctx.query);
     }
+
+    async todayhot() {
+        const { ctx } = this;
+        ctx.body = await ctx.service.user.todayhot(ctx.query);
+    }
 }
 
 module.exports = UserController;
