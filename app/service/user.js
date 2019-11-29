@@ -1,8 +1,8 @@
 'use strict';
 
 const Service = require('egg').Service;
-const Sequelize = require('sequelize');
-const Op = Sequelize.Op;
+const sequelize = require('sequelize');
+const Op = sequelize.Op;
 
 class HomeServicer extends Service {
     async get(params) {
@@ -64,8 +64,7 @@ class HomeServicer extends Service {
         const result = await this.ctx.model.Hots.findAll({
             where: {
                 created_at: {
-                    [Op.lt]: new Date(),
-                    [Op.gt]: new Date(new Date() - 24 * 60 * 60 * 1000)
+                    [Op.gt]: sequelize.literal('CURRENT_DATE')
                 }
             },
             limit: 5,
