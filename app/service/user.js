@@ -64,6 +64,7 @@ class HomeServicer extends Service {
         const result = await this.ctx.model.Hots.findAll({
             where: {
                 created_at: {
+                    [Op.lt]: new Date(),
                     [Op.gt]: new Date(new Date() - 24 * 60 * 60 * 1000)
                 }
             },
