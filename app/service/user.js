@@ -60,7 +60,6 @@ class HomeServicer extends Service {
         return await good.destroy();
     }
     async todayhot(params) {
-        console.log(params);
         const result = await this.ctx.model.Hots.findAll({
             where: {
                 created_at: {
