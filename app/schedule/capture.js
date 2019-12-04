@@ -30,7 +30,11 @@ module.exports = app => {
             hots.forEach(async text => {
                 const hasText = await ctx.model.Hots.findByPk(text);
                 if (!hasText) {
-                    await ctx.model.Hots.create({text});
+                    try {
+                        await ctx.model.Hots.create({text});
+                    } catch (error) {
+                        ctx.logger.info(error, '错误 sql一起写入了？？？');
+                    }
                 } else {
                     const num = hasText.dataValues.num + 1;
                     await hasText.update({
