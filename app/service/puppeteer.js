@@ -73,8 +73,10 @@ class Puppeteer extends Service {
         const hasFlag = await this.ctx.model.Taobao.findByPk(good_url);
         if (!hasFlag) {
             const crawresult = await getJDDetail(good_url);
-            const result = await this.ctx.model.Taobao.create(Object.assign(crawresult, {good_url}));
-            return result;
+            if (crawresult.good_img) {
+                const result = await this.ctx.model.Taobao.create(Object.assign(crawresult, {good_url}));
+                return result;
+            }
         }
         return hasFlag;
     }
