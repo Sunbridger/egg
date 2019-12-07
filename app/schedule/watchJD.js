@@ -66,7 +66,7 @@ module.exports = app => {
                 await browser.close();
                 needUpdateArr.forEach(async good => {
                     const thisgood = await ctx.model.Taobao.findByPk(good.good_url);
-                    if (thisgood.dataValues.new_price.indexOf(good.new_price) === -1) {
+                    if (thisgood.dataValues.new_price && thisgood.dataValues.new_price.indexOf(good.new_price) === -1) {
                         const new_price = thisgood.dataValues.new_price ? `${thisgood.dataValues.new_price},${good.new_price}` : good.new_price;
                         await thisgood.update({
                             new_price
