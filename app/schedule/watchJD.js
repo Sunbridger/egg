@@ -44,7 +44,7 @@ module.exports = app => {
                 browser = await puppeteer.launch({
                     headless: true,
                     dumpio: false,
-                    args: ['--no-sandbox', '--disable-setuid-sandbox']
+                    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
                 });
                 if (taobaos.length > 7) {
                     Event.EventEmitter.defaultMaxListeners = taobaos.length + 10;
