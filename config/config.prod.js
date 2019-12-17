@@ -31,6 +31,12 @@ module.exports = appInfo => {
         dynamic: true
     };
     config.domain = 'http://sunbridger.top:7001/';
+
+    config.middleware = [ 'compress' ];
+    config.compress = {
+        threshold: 1000,
+    };
+
     return {
         ...config,
     };

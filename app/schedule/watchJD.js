@@ -33,7 +33,7 @@ module.exports = app => {
         schedule: {
             interval: '10m',
             type: 'all',
-            immediate: true
+            // immediate: true
         },
         async task(ctx) {
             if (browser) {
