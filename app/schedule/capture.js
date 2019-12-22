@@ -22,8 +22,8 @@ async function gethotkey() {
 module.exports = app => {
     return {
         schedule: {
-            interval: '30s', // 6分钟间隔
-            type: 'all' // 指定所有的 worker 都需要执行
+            interval: '30s',
+            type: 'all'
         },
         async task(ctx) {
             const hots = await gethotkey();
