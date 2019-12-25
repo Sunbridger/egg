@@ -31,7 +31,8 @@ async function watchJD(good_url, tit_price) {
 module.exports = app => {
     return {
         schedule: {
-            interval: '60m'
+            interval: '60m',
+            type: 'all'
         },
         async task(ctx) {
             if (browser) {
