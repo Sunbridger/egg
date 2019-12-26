@@ -23,7 +23,7 @@ module.exports = app => {
     return {
         schedule: {
             interval: '30s',
-            type: 'all'
+            type: 'worker'
         },
         async task(ctx) {
             const hots = await gethotkey();
@@ -31,7 +31,7 @@ module.exports = app => {
                 const hasText = await ctx.model.Hots.findByPk(text);
                 if (!hasText) {
                     try {
-                        await ctx.model.Hots.create({text});
+                        await ctx.model.Hots.create({ text });
                     } catch (error) {
                         ctx.logger.info(error, '错误 sql一起写入了？？？');
                     }
