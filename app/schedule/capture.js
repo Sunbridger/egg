@@ -28,6 +28,16 @@ module.exports = app => {
         async task(ctx) {
             const hots = await gethotkey();
             hots.forEach(async text => {
+                // await ctx.model.Hots.findOrCreate({
+                //     raw: true,
+                //     where: { text }
+                // }).then(([value, created]) => {
+                //     if (created) {
+                //         value.update({
+                //             num: value.num + 1
+                //         })
+                //     }
+                // })
                 const hasText = await ctx.model.Hots.findByPk(text);
                 if (!hasText) {
                     try {
