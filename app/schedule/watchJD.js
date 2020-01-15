@@ -31,8 +31,9 @@ async function watchJD(good_url, tit_price) {
 module.exports = app => {
     return {
         schedule: {
-            interval: '60m',
-            type: 'worker'
+            interval: '3m',
+            type: 'worker',
+            immediate: true
         },
         async task(ctx) {
             if (browser) {
@@ -65,12 +66,19 @@ module.exports = app => {
                 await browser.close();
                 needUpdateArr.forEach(async good => {
                     const thisgood = await ctx.model.Taobao.findByPk(good.good_url);
-                    if (thisgood.dataValues.new_price && thisgood.dataValues.new_price.indexOf(good.new_price) === -1) {
-                        const new_price = thisgood.dataValues.new_price ? `${thisgood.dataValues.new_price},${good.new_price}` : good.new_price;
+                    const new_price = thisgood.dataValues.new_price;
+                    if (new_price) {
+                        if (new_price.indexOf(good.new_price) === -1) {
+                            await thisgood.update({
+                                new_price: `${new_price},${good.new_price}`
+                            });
+                            ctx.logger.info('✅ 更新完成');
+                        }
+                    } else {
                         await thisgood.update({
-                            new_price
+                            new_price : good.new_price
                         });
-                        console.log('✅ 更新完成');
+                        ctx.logger.info('✅ 更新完成');
                     }
                 });
             }

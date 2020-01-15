@@ -16,7 +16,7 @@ async function gethotkey(browser) {
 module.exports = app => {
     return {
         schedule: {
-            interval: '20s',
+            interval: '30s',
             type: 'worker'
         },
         async task(ctx) {
