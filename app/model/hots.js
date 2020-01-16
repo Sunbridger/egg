@@ -3,6 +3,8 @@ module.exports = app => {
     const hots = app.model.define('hots', {
         text: { type: STRING(255), primaryKey: true },
         num: INTEGER(255),
+        link: STRING(500),
+        icon: STRING(500),
         created_at: DATE,
         updated_at: DATE
     }, {

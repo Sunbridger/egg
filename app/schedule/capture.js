@@ -1,13 +1,16 @@
 const puppeteer = require('puppeteer');
-const path = p => require('path').resolve(__dirname, '../../assets', p);
+
 async function gethotkey(browser) {
     const page = await browser.newPage();
-    await page.goto('https://m.weibo.cn/search?containerid=231583');
-    await page.waitForSelector('#app > div:nth-child(1) > div:nth-child(1) > div.card.m-panel.card16.m-col-2 > div > div .m-item-box .m-text-cut');
+    await page.goto('https://s.weibo.com/top/summary?cate=realtimehot');
+    await page.waitForSelector('#pl_top_realtimehot');
     const result = await page.evaluate(() => {
-        let hots = [...document.querySelectorAll('#app > div:nth-child(1) > div:nth-child(1) > div.card.m-panel.card16.m-col-2 > div > div .m-item-box .m-text-cut')].map(ele => ele.innerText);
-        hots.pop();
-        return hots;
+        let hotsRow = [...document.querySelectorAll('.td-02')].slice(1, 11).map(ele => ({
+            text: ele.firstElementChild.innerText,
+            link: ele.firstElementChild.href,
+            icon: ele.querySelector('img') ? ele.querySelector('img').src : ''
+        }));
+        return hotsRow;
     });
     await page.close();
     return result;
@@ -26,19 +29,23 @@ module.exports = app => {
                 args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
             });
             const hots = await gethotkey(browser);
-            await Promise.all(hots.map(async text => {
-                const hasText = await ctx.model.Hots.findByPk(text);
+            await Promise.all(hots.map(async row => {
+                const hasText = await ctx.model.Hots.findByPk(row.text);
                 if (!hasText) {
                     try {
-                        await ctx.model.Hots.create({ text });
+                        await ctx.model.Hots.create(row);
                     } catch (error) {
                         ctx.logger.info(error, '错误 sql一起写入了？？？');
                     }
                 } else {
                     const num = hasText.dataValues.num + 1;
-                    await hasText.update({
-                        num
-                    });
+                    try {
+                        await hasText.update({
+                            num
+                        });
+                    } catch (error) {
+                        ctx.logger.info(error, '更新错误？？？');
+                    }
                 }
             }));
             await browser.close();
