@@ -73,10 +73,10 @@ class HomeServicer extends Service {
     async sendEmail(params) {
         const { email, name } = params;
         await sendMail({
-            from: '"乔乔乔小助手" <739272884@qq.com>',
+            from: '乔乔乔小助手',
             to: `sunbridger@sina.com, ${email}`,
             subject: `亲爱的${name}你好: `,
-            html: `亲爱的${name}你好，欢迎注册数好助手👏👏👏`
+            html: `亲爱的${name}你好，欢迎来到数好助手👏👏👏`
         })
         return true;
     }
