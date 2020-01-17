@@ -1,7 +1,6 @@
-'use strict';
-
 const Service = require('egg').Service;
 const sequelize = require('sequelize');
+const sendMail = require('../core/sendEmail');
 const Op = sequelize.Op;
 
 class HomeServicer extends Service {
@@ -70,6 +69,16 @@ class HomeServicer extends Service {
             order: [['num', 'DESC']]
         });
         return result;
+    }
+    async sendEmail(params) {
+        const { email, name } = params;
+        await sendMail({
+            from: '"乔乔乔小助手" <739272884@qq.com>',
+            to: `sunbridger@sina.com, ${email}`,
+            subject: `亲爱的${name}你好: `,
+            html: `亲爱的${name}你好，欢迎注册数好助手👏👏👏`
+        })
+        return true;
     }
 
 }
