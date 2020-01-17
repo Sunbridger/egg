@@ -5,7 +5,7 @@ async function gethotkey(browser) {
     await page.goto('https://s.weibo.com/top/summary?cate=realtimehot');
     await page.waitForSelector('#pl_top_realtimehot');
     const result = await page.evaluate(() => {
-        let hotsRow = [...document.querySelectorAll('.td-02')].map(ele => ({
+        let hotsRow = [...document.querySelectorAll('.td-02')].slice(1, 21).map(ele => ({
             text: ele.firstElementChild.innerText,
             link: ele.firstElementChild.href,
             icon: ele.querySelector('img') ? ele.querySelector('img').src : ''

@@ -44,6 +44,7 @@ module.exports = app => {
             transporter.sendMail(mailOptions, error => {
                 error && ctx.logger.info(error.stack, '---发送邮件错误！');
             });
+            // ctx.model.Hots.destroy()
         }
     }
 };
