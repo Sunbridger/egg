@@ -29,7 +29,13 @@ module.exports = app => {
                 subject: '来看看微博今日热点榜单都有哪些吧～',
                 html
             });
-            // ctx.model.Hots.destroy()
+            ctx.model.Hots.destroy({
+                where: {
+                    num: {
+                        [Op.lt]: 10
+                    }
+                }
+            });
         }
     }
 };
