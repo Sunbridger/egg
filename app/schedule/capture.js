@@ -17,7 +17,6 @@ async function gethotkey(browser) {
         await page.close();
         return result;
     } catch (error) {
-        await page.close();
         console.log(error.name, 'xxxxxx爬取错误');
         sendMail({
             from: '"爬虫gethotkey发生错误" <739272884@qq.com>',
@@ -25,6 +24,7 @@ async function gethotkey(browser) {
             subject: '爬虫gethotkey发生错误',
             html: `<h2>${error.name}</h2><span>${JSON.stringify(error)}</span>`
         });
+        await page.close();
         return [];
     }
 }

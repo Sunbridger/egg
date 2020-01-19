@@ -14,7 +14,7 @@ module.exports = appInfo => {
     };
 
     config.cors = {
-        origin: '*',
+        origin: 'http://sunbridger.top',
         allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
         credentials: true
     };
@@ -22,7 +22,7 @@ module.exports = appInfo => {
         csrf: {
             enable: false
         },
-        domainWhiteList: ['*']
+        domainWhiteList: ['http://sunbridger.top']
     };
     config.static = {
         maxAge: 31536000,
