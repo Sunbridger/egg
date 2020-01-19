@@ -1,19 +1,25 @@
 const puppeteer = require('puppeteer');
 
 async function gethotkey(browser) {
-    const page = await browser.newPage();
-    await page.goto('https://s.weibo.com/top/summary?cate=realtimehot');
-    await page.waitForSelector('#pl_top_realtimehot');
-    const result = await page.evaluate(() => {
-        let hotsRow = [...document.querySelectorAll('.td-02')].slice(1, 21).map(ele => ({
-            text: ele.firstElementChild.innerText,
-            link: ele.firstElementChild.href,
-            icon: ele.querySelector('img') ? ele.querySelector('img').src : ''
-        }));
-        return hotsRow;
-    });
-    await page.close();
-    return result;
+    let page = await browser.newPage();
+    try {
+        await page.goto('https://s.weibo.com/top/summary?cate=realtimehot');
+        await page.waitForSelector('#pl_top_realtimehot');
+        const result = await page.evaluate(() => {
+            let hotsRow = [...document.querySelectorAll('.td-02')].slice(1, 21).map(ele => ({
+                text: ele.firstElementChild.innerText,
+                link: ele.firstElementChild.href,
+                icon: ele.querySelector('img') ? ele.querySelector('img').src : ''
+            }));
+            return hotsRow;
+        });
+        await page.close();
+        return result;
+    } catch (error) {
+        await page.close();
+        console.log(error.name, 'xxxxxx爬取错误');
+        return [];
+    }
 }
 
 module.exports = app => {
