@@ -1,5 +1,6 @@
 const puppeteer = require('puppeteer');
 const Event = require('events');
+const sendMail = require('../core/sendEmail');
 
 let errList = [];
 let browser = null;
@@ -20,6 +21,12 @@ async function watchJD(good_url, tit_price) {
     } catch (err) {
         console.log('❌ 即将进入下一轮');
         await page.close();
+        sendMail({
+            from: '"爬虫watchJD发生错误" <739272884@qq.com>',
+            to: 'sunbridger@sina.com',
+            subject: '爬虫watchJD发生错误',
+            html: `<h2>${err.name}</h2> <a href='${good_url}'>爬取这个商品时发生错误</a>`
+        });
         errList.push({
             good_url,
             tit_price
