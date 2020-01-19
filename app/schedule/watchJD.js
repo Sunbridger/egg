@@ -73,17 +73,23 @@ module.exports = app => {
                 await browser.close();
                 needUpdateArr.forEach(async good => {
                     const thisgood = await ctx.model.Taobao.findByPk(good.good_url);
-                    const new_price = thisgood.dataValues.new_price;
-                    if (new_price) {
-                        if (new_price.indexOf(good.new_price) === -1) {
+                    const new_price = JSON.parse(thisgood.dataValues.new_price || '{}');
+                    const priceArr = Object.keys(new_price);
+                    if (priceArr.length) {
+                        if (!priceArr.includes(good.new_price)) {
                             await thisgood.update({
-                                new_price: `${new_price},${good.new_price}`
+                                new_price: JSON.stringify({
+                                    ...new_price,
+                                    [good.new_price]: new Date().getTime()
+                                })
                             });
                             ctx.logger.info('✅ 更新完成');
                         }
                     } else {
                         await thisgood.update({
-                            new_price : good.new_price
+                            new_price: JSON.stringify({
+                                [good.new_price]: new Date().getTime()
+                            })
                         });
                         ctx.logger.info('✅ 更新完成');
                     }
