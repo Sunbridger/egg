@@ -53,7 +53,7 @@ module.exports = app => {
                     args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
                 });
                 if (taobaos.length > 7) {
-                    Event.EventEmitter.defaultMaxListeners = taobaos.length + 10;
+                    Event.EventEmitter.defaultMaxListeners = taobaos.length + 12;
                 }
                 let needUpdateArr = await Promise.all(taobaos.map(async good => {
                     const { good_url, tit_price } = good.dataValues;
