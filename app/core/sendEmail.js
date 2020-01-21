@@ -1,12 +1,12 @@
 const nodemailer = require('nodemailer');
 
 let transporter = nodemailer.createTransport({
-    service: 'QQ',
+    service: '163',
     port: 465,
     secureConnection: true,
     auth: {
-        user: '739272884@qq.com',
-        pass: 'jnbofdxrorzcbdid',
+        user: 'shuhaozhushou@163.com',
+        pass: 'QAWqaw123',
     }
 });
 
@@ -19,6 +19,6 @@ let transporter = nodemailer.createTransport({
 
 module.exports = (mailOptions) => {
     transporter.sendMail(mailOptions, error => {
-        error && ctx.logger.info(error.stack, '---发送邮件错误！');
+        error && console.log(error.stack, '---发送邮件错误！');
     });
 }
