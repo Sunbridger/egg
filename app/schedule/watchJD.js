@@ -20,12 +20,6 @@ async function watchJD(good_url, tit_price) {
         }
     } catch (err) {
         console.log('❌ 即将进入下一轮');
-        sendMail({
-            from: '"爬虫watchJD发生错误" <739272884@qq.com>',
-            to: 'sunbridger@sina.com',
-            subject: '爬虫watchJD发生错误',
-            html: `<h2>${err.name}</h2> <a href='${good_url}'>爬取这个商品时发生错误</a>`
-        });
         await page.close();
         errList.push({
             good_url,
@@ -83,6 +77,12 @@ module.exports = app => {
                                 })
                             });
                             ctx.logger.info('✅ 更新完成');
+                            sendMail({
+                                from: '"爬虫京东价格👀👀👀" <739272884@qq.com>',
+                                to: 'sunbridger@sina.com',
+                                subject: '爬虫watchJD发生错误',
+                                html: `<h2>${good.new_price}</h2> <a href='${good.good_url}'>这个商品最新价格有波动</a>`
+                            });
                         }
                     } else {
                         await thisgood.update({

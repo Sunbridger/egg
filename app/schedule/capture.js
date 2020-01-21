@@ -1,5 +1,4 @@
 const puppeteer = require('puppeteer');
-const sendMail = require('../core/sendEmail');
 
 async function gethotkey(browser) {
     let page = await browser.newPage();
@@ -18,12 +17,6 @@ async function gethotkey(browser) {
         return result;
     } catch (error) {
         console.log(error.name, 'xxxxxx爬取错误');
-        sendMail({
-            from: '"爬虫gethotkey发生错误" <739272884@qq.com>',
-            to: 'sunbridger@sina.com',
-            subject: '爬虫gethotkey发生错误',
-            html: `<h2>${error.name}</h2><span>${JSON.stringify(error)}</span>`
-        });
         await page.close();
         return [];
     }
