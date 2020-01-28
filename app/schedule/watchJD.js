@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 const Event = require('events');
-const sendMail = require('../core/sendEmail');
+// const sendMail = require('../core/sendEmail');
 
 let errList = [];
 let browser = null;
@@ -77,12 +77,12 @@ module.exports = app => {
                                 })
                             });
                             ctx.logger.info('✅ 更新完成');
-                            sendMail({
-                                from: '"爬虫京东价格👀👀👀" <739272884@qq.com>',
-                                to: 'sunbridger@sina.com',
-                                subject: '爬虫watchJD发生错误',
-                                html: `<h2>${good.new_price}</h2> <a href='${good.good_url}'>这个商品最新价格有波动</a>`
-                            });
+                            // sendMail({
+                            //     from: '"爬虫京东价格👀👀👀" <739272884@qq.com>',
+                            //     to: 'sunbridger@sina.com',
+                            //     subject: '爬虫watchJD发生错误',
+                            //     html: `<h2>${good.new_price}</h2> <a href='${good.good_url}'>这个商品最新价格有波动</a>`
+                            // });
                         }
                     } else {
                         await thisgood.update({
