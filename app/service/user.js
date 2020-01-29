@@ -74,7 +74,7 @@ class HomeServicer extends Service {
         const result = await this.ctx.model.Hots.findAll({
             where: {
                 text: {
-                    [Op.like]: sequelize.literal('%病毒%')
+                    [Op.like]: sequelize.literal('"%病毒%"')
                 }
             },
             order: [['num', 'DESC']]

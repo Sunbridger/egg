@@ -18,12 +18,12 @@ module.exports = appInfo => {
         allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
         credentials: true
     };
-    config.security = {
-        csrf: {
-            enable: false
-        },
-        domainWhiteList: ['*']
-    };
+    // config.security = {
+    //     csrf: {
+    //         enable: false
+    //     },
+    //     domainWhiteList: ['*']
+    // };
     config.static = {
         maxAge: 31536000,
         prefix: '',
