@@ -32,7 +32,7 @@ async function watchJD(good_url, tit_price) {
 module.exports = app => {
     return {
         schedule: {
-            interval: '30s',
+            interval: '300s',
             type: 'worker'
         },
         async task(ctx) {
