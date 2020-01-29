@@ -70,6 +70,17 @@ class HomeServicer extends Service {
         });
         return result;
     }
+    async getVirus() {
+        const result = await this.ctx.model.Hots.findAll({
+            where: {
+                text: {
+                    [Op.like]: sequelize.literal('%病毒%')
+                }
+            },
+            order: [['num', 'DESC']]
+        });
+        return result;
+    }
     async sendEmail(params) {
         const { email, name } = params;
         await sendMail({

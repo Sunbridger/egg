@@ -50,6 +50,11 @@ class UserController extends Controller {
         const { ctx } = this;
         ctx.body = await ctx.service.user.sendEmail(ctx.query);
     }
+
+    async getVirus() {
+        const { ctx } = this;
+        ctx.body = await ctx.service.user.getVirus(ctx.query);
+    }
 }
 
 module.exports = UserController;
