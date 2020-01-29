@@ -13,5 +13,6 @@ module.exports = app => {
     router.get('/getJDinfo', controller.puppeteer.getJDinfo);
     router.get('/deletetaobao', controller.user.deletetaobao);
     router.get('/todayhot', controller.user.todayhot);
+    router.get('/getVirus', controller.user.getVirus);
     router.get('/sendEmail', controller.user.sendEmail);
 };
