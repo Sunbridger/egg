@@ -6,7 +6,7 @@ module.exports = appInfo => {
     // 使用sequelize操作数据库的
     config.sequelize = {
         dialect: 'mysql',
-        host: '127.0.0.1',
+        host: 'tenxun-mysql',
         port: 3306,
         username: 'root',
         password: '123456',
@@ -14,7 +14,8 @@ module.exports = appInfo => {
     };
 
     config.cors = {
-        origin: 'http://sunbridger.top',
+        origin: '*'',
+        // origin: 'http://sunbridger.top',
         allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
         credentials: true
     };
