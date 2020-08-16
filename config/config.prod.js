@@ -15,7 +15,7 @@ module.exports = appInfo => {
     };
 
     config.cors = {
-        origin: '*'',
+        origin: '*',
         // origin: 'http://sunbridger.top',
         allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
         credentials: true
