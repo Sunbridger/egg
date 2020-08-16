@@ -24,14 +24,14 @@
     "egg-mock": "^3.21.0",
     "eslint": "^5.13.0",
     "eslint-config-egg": "^7.1.0",
-    "puppeteer": "^2.0.0",
+    "puppeteer": "^2.1.1",
     "svg-captcha": "^1.4.0"
   },
   "engines": {
     "node": ">=10.0.0"
   },
   "scripts": {
-    "start": "egg-scripts start --daemon --title=egg-server-my-egg",
+    "start": "egg-scripts start  --daemon --title=egg-server-my-egg",
     "stop": "egg-scripts stop --title=egg-server-my-egg",
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",

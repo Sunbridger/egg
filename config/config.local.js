@@ -6,7 +6,7 @@ module.exports = appInfo => {
     // 使用sequelize操作数据库的
     config.sequelize = {
         dialect: 'mysql',
-        host: 'tenxun-mysql',
+        host: '119.45.209.166',
         port: 3306,
         username: 'root',
         password: '123456',
