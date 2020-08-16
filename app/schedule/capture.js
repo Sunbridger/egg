@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer');
-
+const pathTo = require('path').resolve(__dirname, '../../chrome-linux');
 async function gethotkey(browser) {
     let page = await browser.newPage();
     try {
@@ -25,7 +25,7 @@ async function gethotkey(browser) {
 module.exports = app => {
     return {
         schedule: {
-            interval: '30s',
+            interval: '15s',
             type: 'worker'
         },
         async task(ctx) {

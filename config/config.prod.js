@@ -6,15 +6,16 @@ module.exports = appInfo => {
     // 使用sequelize操作数据库的
     config.sequelize = {
         dialect: 'mysql',
-        host: 'tenxun-mysql',
+        host: '119.45.209.166',
         port: 3306,
         username: 'root',
         password: '123456',
         database: 'weibo',
+        timezone: '+08:00'
     };
 
     config.cors = {
-        origin: '*'',
+        origin: '*',
         // origin: 'http://sunbridger.top',
         allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS',
         credentials: true
