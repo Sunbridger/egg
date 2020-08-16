@@ -24,7 +24,7 @@ module.exports = app => {
                 html += `<p style="margin-bottom: 5px;">${row.text} <span style="color: blue; margin-left: 10px">${row.num}</span></p>`
             });
             sendMail({
-                from: '"乔乔乔小助手" <739272884@qq.com>',
+                from: '"乔乔乔小助手" <shuhaozhushou@163.com>',
                 to: 'sunbridger@sina.com',
                 subject: '来看看微博今日热点榜单都有哪些吧～',
                 html
