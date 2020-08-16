@@ -11,6 +11,7 @@ module.exports = appInfo => {
         username: 'root',
         password: '123456',
         database: 'weibo',
+        timezone: '+08:00'
     };
 
     config.cors = {
