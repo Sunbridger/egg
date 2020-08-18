@@ -88,7 +88,7 @@ class HomeServicer extends Service {
             to: `sunbridger@sina.com, ${email}`,
             subject: `新用户注册了 `,
             html: `亲爱的${name}(邮箱为${email})你好,欢迎注册数好助手👏👏👏`
-        })
+        });
         return true;
     }
 
