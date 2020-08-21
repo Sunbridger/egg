@@ -65,7 +65,7 @@ class HomeServicer extends Service {
                     [Op.gt]: sequelize.literal('CURRENT_DATE')
                 }
             },
-            limit: params.limit || 20,
+            limit: params.limit || 50,
             order: [['num', 'DESC']]
         });
         return result;
