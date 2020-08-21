@@ -55,6 +55,11 @@ class UserController extends Controller {
         const { ctx } = this;
         ctx.body = await ctx.service.user.getVirus(ctx.query);
     }
+
+    async getAllHots() {
+        const { ctx } = this;
+        ctx.body = await ctx.service.user.getAllHots(ctx.query);
+    }
 }
 
 module.exports = UserController;

@@ -15,4 +15,5 @@ module.exports = app => {
     router.get('/todayhot', controller.user.todayhot);
     router.get('/getVirus', controller.user.getVirus);
     router.get('/sendEmail', controller.user.sendEmail);
+    router.get('/getAllHots', controller.user.getAllHots);
 };

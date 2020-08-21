@@ -92,6 +92,22 @@ class HomeServicer extends Service {
         return true;
     }
 
+    async getAllHots(params) {
+        const { pageIndex } = params;
+
+        const pageSize = 20;
+
+        const offset = (pageIndex - 1) * pageSize;
+
+        const result = await this.ctx.model.Hots.findAll({
+            limit: pageSize,
+            offset,
+            order: [['num', 'DESC']]
+        });
+
+        return result;
+    }
+
 }
 
 module.exports = HomeServicer;
