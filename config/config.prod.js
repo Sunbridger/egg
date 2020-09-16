@@ -7,7 +7,7 @@ module.exports = appInfo => {
     config.sequelize = {
         dialect: 'mysql',
         host: '119.45.209.166',
-        port: 3306,
+        port: 3333,
         username: 'root',
         password: '123456',
         database: 'weibo',
