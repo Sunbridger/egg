@@ -60,6 +60,11 @@ class UserController extends Controller {
         const { ctx } = this;
         ctx.body = await ctx.service.user.getAllHots(ctx.query);
     }
+
+    async sendmaidian() {
+        const { ctx } = this;
+        ctx.body = await ctx.service.user.sendmaidian(ctx.query);
+    }
 }
 
 module.exports = UserController;
