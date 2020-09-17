@@ -108,6 +108,13 @@ class HomeServicer extends Service {
         return result;
     }
 
+    async sendmaidian(params) {
+        const result = await this.ctx.model.Maidian.create({
+            ua: params.ua
+        });
+        return result;
+    }
+
 }
 
 module.exports = HomeServicer;
