@@ -6,7 +6,8 @@ module.exports = app => {
     return {
         schedule: {
             cron: '59 59 23 * * *',
-            type: 'worker'
+            type: 'worker',
+            immediate: true
         },
         async task(ctx) {
             const result = await ctx.model.Hots.findAll({
@@ -29,6 +30,19 @@ module.exports = app => {
                 subject: '来看看微博今日热点榜单都有哪些吧～',
                 html
             });
+
+            await ctx.curl('https://oapi.dingtalk.com/robot/send?access_token=d07cd5b0ce7f7ad5aff5627f92086299ac29c79d9825b2ccbefcdffd9f9174ff', {
+                contentType: 'json',
+                method: 'POST',
+                data: {
+                    "msgtype": "markdown",
+                    "markdown": {
+                        "title":"非活跃埋点数据通知",
+                        "text": html
+                    }
+                }
+            });
+
             ctx.model.Hots.destroy({
                 where: {
                     num: {
