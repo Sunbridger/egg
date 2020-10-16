@@ -2,6 +2,12 @@ const sequelize = require('sequelize');
 const sendMail = require('../core/sendEmail');
 const Op = sequelize.Op;
 
+const getToday = () => {
+    let day1 = new Date();
+    let datestr = day1.getFullYear() + '年' + (day1.getMonth() + 1) + '月' + day1.getDate() + '日';
+    return datestr;
+}
+
 module.exports = app => {
     return {
         schedule: {
@@ -22,7 +28,7 @@ module.exports = app => {
             });
             let html = '';
 
-            let textForDing = '';
+            let textForDing = `## ${getToday()}微博热搜排行榜\n\n`;
 
             result.forEach(row => {
                 html += `<p style="margin-bottom: 5px;">${row.text} <span style="color: blue; margin-left: 10px">${row.num}</span></p>`;
