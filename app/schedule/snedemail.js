@@ -21,8 +21,12 @@ module.exports = app => {
                 order: [['num', 'DESC']]
             });
             let html = '';
+
+            let textForDing = '';
+
             result.forEach(row => {
-                html += `<p style="margin-bottom: 5px;">${row.text} <span style="color: blue; margin-left: 10px">${row.num}</span></p>`
+                html += `<p style="margin-bottom: 5px;">${row.text} <span style="color: blue; margin-left: 10px">${row.num}</span></p>`;
+                textForDing += `${row.text}  ${row.num} \n\n`;
             });
             sendMail({
                 from: '"乔乔乔小助手" <shuhaozhushou@163.com>',
@@ -37,8 +41,8 @@ module.exports = app => {
                 data: {
                     "msgtype": "markdown",
                     "markdown": {
-                        "title":"非活跃埋点数据通知",
-                        "text": html
+                        "title":"微博热搜通知",
+                        "text": textForDing
                     }
                 }
             });
