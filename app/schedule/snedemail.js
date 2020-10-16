@@ -32,7 +32,7 @@ module.exports = app => {
 
             result.forEach(row => {
                 html += `<p style="margin-bottom: 5px;">${row.text} <span style="color: blue; margin-left: 10px">${row.num}</span></p>`;
-                textForDing += `${row.text}  ${row.num} \n\n`;
+                textForDing += `[${row.text}](${row.link})  ${row.num} \n\n`;
             });
             sendMail({
                 from: '"乔乔乔小助手" <shuhaozhushou@163.com>',
