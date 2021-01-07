@@ -17,7 +17,11 @@ const clsObj = {
 
 function getNbaList() {
     return new Promise(async (resolve, reject) => {
-        const browser = await puppeteer.launch({headless: false });
+        const browser = await puppeteer.launch({
+            headless: true,
+            dumpio: false,
+            args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
+        });
         const page = await browser.newPage();
         await page.goto('https://tiyu.baidu.com/match/NBA/tab');
         const waps = await page.waitForSelector(clsObj.clsName);
