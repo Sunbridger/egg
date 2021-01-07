@@ -98,7 +98,10 @@ async function handToDingTalk(res, ctx) {
 }
 
 const checkCarTicket = async (ctx) => {
-    const result = await ctx.curl('https://kyfw.12306.cn/otn/leftTicket/queryT?leftTicketDTO.train_date=2021-02-05&leftTicketDTO.from_station=HGH&leftTicketDTO.to_station=YTG&purpose_codes=ADULT')
+    const result = await ctx.curl('https://kyfw.12306.cn/otn/leftTicket/queryT?leftTicketDTO.train_date=2021-02-05&leftTicketDTO.from_station=HGH&leftTicketDTO.to_station=YTG&purpose_codes=ADULT', {
+        dataType: 'json',
+        method: 'GET'
+    });
     console.log(result.data);
 }
 
