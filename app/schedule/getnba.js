@@ -76,7 +76,7 @@ async function handToDingTalk(res, ctx) {
             } = e;
             itemHtml += `${openStatus} ${openTime} ${teamName1} (${teamScroll1}) VS ${teamName2} (${teamScroll2}) \n\n`;
         });
-        return `\n\n ## ${day}赛程\n\n ${itemHtml}`;
+        return `\n\n ## ${day}赛程安排\n\n ${itemHtml}`;
 
     });
     let dingText = '';
@@ -90,8 +90,7 @@ async function handToDingTalk(res, ctx) {
         data: {
             "msgtype": "text",
             "text": {
-                "title":"赛程安排",
-                "text": dingText
+                "content": dingText
             }
         }
     });
