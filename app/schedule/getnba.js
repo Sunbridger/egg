@@ -12,8 +12,7 @@ const clsObj = {
     openStatusClsName: '.vs-info-status-linshi',
     teamNameClsName: '.vs-info-team-info .team-name',
     teamLogClsName: '.vs-info-team-info .team-row > .inline-block:nth-child(1)',
-    teamScrollClsName: '.vs-info-team-info .team-score-num',
-    moreLoadClsName: '#sfr-app > div > div.rt-body > div > div > div > main > section > div.match-matchContent.wa-tiyu-match > b-grouplist-sticky > div > div.b-grouplist-sticky-content > div > div.c-infinite-scroll > div.c-tabs-content > div > div > div > div.c-pull-refresh-content > div:nth-child(1) > div.wa-match-schedule-list-title > div.btn-load'
+    teamScrollClsName: '.vs-info-team-info .team-score-num'
 };
 
 
@@ -27,9 +26,6 @@ function getNbaList() {
         const page = await browser.newPage();
         await page.goto(urlNba);
         await page.waitForSelector(clsObj.clsName);
-        await page.click(clsObj.moreLoadClsName, {
-            delay: 1000
-        });
         const result = await page.evaluate((clsObj) => {
             const {
                 clsName, dayClsName, itemsClsName, openTimeClsName, openStatusClsName,
@@ -106,8 +102,7 @@ module.exports = app => {
     return {
         schedule: {
             cron: '30 30 16 * * *',
-            type: 'worker',
-            immediate: true
+            type: 'worker'
         },
         async task(ctx) {
             getNbaList().then((res) => {
