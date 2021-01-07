@@ -105,7 +105,7 @@ const checkCarTicket = async (ctx) => {
 module.exports = app => {
     return {
         schedule: {
-            cron: '30 30 19 * * *',
+            cron: '30 30 16 * * *',
             type: 'worker',
             immediate: true
         },
