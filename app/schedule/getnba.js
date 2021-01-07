@@ -13,7 +13,7 @@ const clsObj = {
     teamNameClsName: '.vs-info-team-info .team-name',
     teamLogClsName: '.vs-info-team-info .team-row > .inline-block:nth-child(1)',
     teamScrollClsName: '.vs-info-team-info .team-score-num',
-    moreLoadClsName: '.btn-load'
+    moreLoadClsName: '#sfr-app > div > div.rt-body > div > div > div > main > section > div.match-matchContent.wa-tiyu-match > b-grouplist-sticky > div > div.b-grouplist-sticky-content > div > div.c-infinite-scroll > div.c-tabs-content > div > div > div > div.c-pull-refresh-content > div:nth-child(1) > div.wa-match-schedule-list-title > div.btn-load'
 };
 
 
@@ -28,7 +28,7 @@ function getNbaList() {
         await page.goto(urlNba);
         await page.waitForSelector(clsObj.clsName);
         await page.click(clsObj.moreLoadClsName, {
-            delay: 3000
+            delay: 1000
         });
         const result = await page.evaluate((clsObj) => {
             const {
