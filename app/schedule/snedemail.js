@@ -12,8 +12,7 @@ module.exports = app => {
     return {
         schedule: {
             cron: '59 59 23 * * *',
-            type: 'worker',
-            immediate: true
+            type: 'worker'
         },
         async task(ctx) {
             const result = await ctx.model.Hots.findAll({
