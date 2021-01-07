@@ -102,7 +102,7 @@ const checkCarTicket = async (ctx) => {
         dataType: 'json',
         method: 'GET'
     });
-    console.log(result.data);
+    console.log(result);
 }
 
 module.exports = app => {
