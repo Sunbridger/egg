@@ -15,47 +15,49 @@ const clsObj = {
 };
 
 
-async function getNbaList() {
-    const browser = await puppeteer.launch({headless: false });
-    const page = await browser.newPage();
-    await page.goto('https://tiyu.baidu.com/match/NBA/tab');
-    const waps = await page.waitForSelector(clsObj.clsName);
-    const result = await page.evaluate((clsObj) => {
-        const {
-            clsName, dayClsName, itemsClsName, openTimeClsName, openStatusClsName,
-            teamNameClsName, teamLogClsName, teamScrollClsName
-        } = clsObj;
-        return [...document.querySelectorAll(clsName)].map((ondWarpBox) => {
-            const day = ondWarpBox.querySelector(dayClsName).innerText;
-            const items = [...ondWarpBox.querySelectorAll(itemsClsName)].map(rowItem => {
-                let openTime = rowItem.querySelector(openTimeClsName).innerText;
-                let openStatus = rowItem.querySelector(openStatusClsName).innerText;
-                let teamName1 = rowItem.querySelectorAll(teamNameClsName)[0].innerText;
-                let teamName2 = rowItem.querySelectorAll(teamNameClsName)[1].innerText;
-                let teamlog1 = rowItem.querySelectorAll(teamLogClsName)[0].style.backgroundImage.replace('url("', '').replace('")', '');
-                let teamlog2 = rowItem.querySelectorAll(teamLogClsName)[1].style.backgroundImage.replace('url("', '').replace('")', '');
-                let teamScroll1 = rowItem.querySelectorAll(teamScrollClsName)[0].innerText;
-                let teamScroll2 = rowItem.querySelectorAll(teamScrollClsName)[1].innerText;
+function getNbaList() {
+    return new Promise(async (resolve, reject) => {
+        const browser = await puppeteer.launch({headless: false });
+        const page = await browser.newPage();
+        await page.goto('https://tiyu.baidu.com/match/NBA/tab');
+        const waps = await page.waitForSelector(clsObj.clsName);
+        const result = await page.evaluate((clsObj) => {
+            const {
+                clsName, dayClsName, itemsClsName, openTimeClsName, openStatusClsName,
+                teamNameClsName, teamLogClsName, teamScrollClsName
+            } = clsObj;
+            return [...document.querySelectorAll(clsName)].map((ondWarpBox) => {
+                const day = ondWarpBox.querySelector(dayClsName).innerText;
+                const items = [...ondWarpBox.querySelectorAll(itemsClsName)].map(rowItem => {
+                    let openTime = rowItem.querySelector(openTimeClsName).innerText;
+                    let openStatus = rowItem.querySelector(openStatusClsName).innerText;
+                    let teamName1 = rowItem.querySelectorAll(teamNameClsName)[0].innerText;
+                    let teamName2 = rowItem.querySelectorAll(teamNameClsName)[1].innerText;
+                    let teamlog1 = rowItem.querySelectorAll(teamLogClsName)[0].style.backgroundImage.replace('url("', '').replace('")', '');
+                    let teamlog2 = rowItem.querySelectorAll(teamLogClsName)[1].style.backgroundImage.replace('url("', '').replace('")', '');
+                    let teamScroll1 = rowItem.querySelectorAll(teamScrollClsName)[0].innerText;
+                    let teamScroll2 = rowItem.querySelectorAll(teamScrollClsName)[1].innerText;
+                    return {
+                        openTime,
+                        openStatus,
+                        teamName1,
+                        teamName2,
+                        teamlog1,
+                        teamlog2,
+                        teamScroll1,
+                        teamScroll2
+                    }
+                });
                 return {
-                    openTime,
-                    openStatus,
-                    teamName1,
-                    teamName2,
-                    teamlog1,
-                    teamlog2,
-                    teamScroll1,
-                    teamScroll2
+                    day,
+                    items
                 }
             });
-            return {
-                day,
-                items
-            }
-        });
-    }, clsObj);
-    return result;
-    await page.close();
-    await browser.close();
+        }, clsObj);
+        await page.close();
+        await browser.close();
+        resolve(result);
+    });
 }
 
 async function handToDingTalk(res, ctx) {
