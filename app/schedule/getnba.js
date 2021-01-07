@@ -89,7 +89,7 @@ async function handToDingTalk(res, ctx) {
         method: 'POST',
         data: {
             "msgtype": "text",
-            "markdown": {
+            "text": {
                 "title":"赛程安排",
                 "text": dingText
             }
