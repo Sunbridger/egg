@@ -76,7 +76,7 @@ async function handToDingTalk(res, ctx) {
             } = e;
             itemHtml += `${openStatus} ${openTime} ${teamName1} (${teamScroll1}) VS ${teamName2} (${teamScroll2}) \n\n`;
         });
-        return `\n\n ## ${day}赛程安排\n\n ${itemHtml}`;
+        return `${day}赛程安排\n\n ${itemHtml}`;
 
     });
     let dingText = '';
@@ -101,7 +101,7 @@ async function handToDingTalk(res, ctx) {
 module.exports = app => {
     return {
         schedule: {
-            cron: '30 30 9 * * *',
+            cron: '30 30 19 * * *',
             type: 'worker',
             immediate: true
         },
