@@ -38,7 +38,7 @@ const checkCarTicket = async (ctx) => {
         sendMail({
             from: '"乔乔乔小助手" <shuhaozhushou@163.com>',
             to: 'sunbridger@sina.com',
-            subject: '来看看微博今日热点榜单都有哪些吧～',
+            subject: `${time}可以开始抢票啦`,
             html: `${time}可以开始抢票啦`
         });
         stopSend = true;
