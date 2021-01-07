@@ -107,9 +107,7 @@ module.exports = app => {
             immediate: true
         },
         async task(ctx) {
-            console.log('准备nba开始paqu');
             getNbaList().then((res) => {
-                console.log(res, 1111111);
                 handToDingTalk(res, ctx);
             });
         }
