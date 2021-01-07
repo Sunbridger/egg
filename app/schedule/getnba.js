@@ -97,39 +97,16 @@ async function handToDingTalk(res, ctx) {
 
 }
 
-const checkCarTicket = async (ctx) => {
-    const result = await ctx.curl('https://kyfw.12306.cn/otn/leftTicket/queryT?leftTicketDTO.train_date=2021-02-05&leftTicketDTO.from_station=HGH&leftTicketDTO.to_station=YTG&purpose_codes=ADULT', {
-        dataType: 'json',
-        method: 'GET',
-        headers: {
-            'Cookie': '_uab_collina=160488793265541491548447; JSESSIONID=D1534A49A86DCAD1739B4A82D5CE0571; _jc_save_wfdc_flag=dc; BIGipServerpool_passport=98828810.50215.0000; route=6f50b51faa11b987e576cdb301e545c4; _jc_save_fromStation=%u676D%u5DDE%u4E1C%2CHGH; _jc_save_toStation=%u9E70%u6F6D%2CYTG; _jc_save_fromDate=2021-02-05; _jc_save_toDate=2021-01-07; RAIL_EXPIRATION=1610279023669; RAIL_DEVICEID=q_50Q5qf-rp6oQmhlx9Rjtc4ozMqdgsN_WLSPuZBwmx4YEGF0Idq6LEpOzgtkWGzpJkHt_rdR8raVT1zgGYugDoNtctyLIsJO26acvsZuXwZ0SQZCSLeM0W8yRWR7mXkxOgopwbJh420AlYgZrgWS6cqjGT4ltpn; BIGipServerotn=837812746.50210.0000; BIGipServerportal=3067347210.16671.0000'
-        }
-    });
-    if (result?.data?.data?.result?.length) {
-        const sendMail = require('../core/sendEmail');
-        sendMail({
-            from: '"乔乔乔小助手" <shuhaozhushou@163.com>',
-            to: 'sunbridger@sina.com',
-            subject: '来看看微博今日热点榜单都有哪些吧～',
-            html: '可以开始抢票啦'
-        });
-    }
-}
-
 module.exports = app => {
     return {
         schedule: {
             cron: '30 30 16 * * *',
-            type: 'worker',
-            immediate: true
+            type: 'worker'
         },
         async task(ctx) {
-            // getNbaList().then((res) => {
-            //     handToDingTalk(res, ctx);
-            // });
-
-            // 12306 爬取接口数据
-            checkCarTicket(ctx);
+            getNbaList().then((res) => {
+                handToDingTalk(res, ctx);
+            });
         }
     }
 };
