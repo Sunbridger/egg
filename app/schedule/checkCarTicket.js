@@ -38,8 +38,18 @@ const checkCarTicket = async (ctx) => {
         sendMail({
             from: '"乔乔乔小助手" <shuhaozhushou@163.com>',
             to: 'sunbridger@sina.com',
-            subject: `${time}可以开始抢票啦`,
-            html: `${time}可以开始抢票啦`
+            subject: `12306平台可以购买${time}的票啦！！！`,
+            html: `12306平台可以购买${time}的票啦！！！`
+        });
+        await ctx.curl('https://oapi.dingtalk.com/robot/send?access_token=d07cd5b0ce7f7ad5aff5627f92086299ac29c79d9825b2ccbefcdffd9f9174ff', {
+            contentType: 'json',
+            method: 'POST',
+            data: {
+                "msgtype": "text",
+                "text": {
+                    "content": `12306平台可以购买${time}的票啦！！！`
+                }
+            }
         });
         stopSend = true;
         nowTime = getDayNumber();
