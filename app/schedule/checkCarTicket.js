@@ -47,7 +47,7 @@ const checkCarTicket = async (ctx) => {
             data: {
                 "msgtype": "text",
                 "text": {
-                    "content": `12306平台可以购买${time}的票啦！！！`
+                    "content": `12306平台可以购买${time}的票啦！！！\n\n抢票排`
                 }
             }
         });
