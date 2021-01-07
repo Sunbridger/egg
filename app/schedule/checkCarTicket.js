@@ -52,7 +52,7 @@ module.exports = app => {
     return {
         schedule: {
             interval: '60s',
-            type: 'worker'
+            type: 'worker',
             immediate: true
         },
         async task(ctx) {
