@@ -2,6 +2,7 @@ const puppeteer = require('puppeteer');
 const pathTo = require('path').resolve(__dirname, '../../chrome-linux');
 const fs = require('fs');
 
+const urlNba = 'https://tiyu.baidu.com/match/NBA/tab';
 
 const clsObj = {
     clsName: '.wa-match-schedule-list-wrapper',
@@ -11,7 +12,8 @@ const clsObj = {
     openStatusClsName: '.vs-info-status-linshi',
     teamNameClsName: '.vs-info-team-info .team-name',
     teamLogClsName: '.vs-info-team-info .team-row > .inline-block:nth-child(1)',
-    teamScrollClsName: '.vs-info-team-info .team-score-num'
+    teamScrollClsName: '.vs-info-team-info .team-score-num',
+    moreLoadClsName: '.btn-load'
 };
 
 
@@ -23,8 +25,11 @@ function getNbaList() {
             args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
         });
         const page = await browser.newPage();
-        await page.goto('https://tiyu.baidu.com/match/NBA/tab');
-        const waps = await page.waitForSelector(clsObj.clsName);
+        await page.goto(urlNba);
+        await page.waitForSelector(clsObj.clsName);
+        await page.click(clsObj.moreLoadClsName, {
+            delay: 3000
+        });
         const result = await page.evaluate((clsObj) => {
             const {
                 clsName, dayClsName, itemsClsName, openTimeClsName, openStatusClsName,
@@ -101,7 +106,8 @@ module.exports = app => {
     return {
         schedule: {
             cron: '30 30 16 * * *',
-            type: 'worker'
+            type: 'worker',
+            immediate: true
         },
         async task(ctx) {
             getNbaList().then((res) => {

@@ -62,8 +62,7 @@ module.exports = app => {
     return {
         schedule: {
             interval: '60s',
-            type: 'worker',
-            immediate: true
+            type: 'worker'
         },
         async task(ctx) {
             // 12306 爬取接口数据
