@@ -98,7 +98,7 @@ async function handToDingTalk(res, ctx) {
 }
 
 const checkCarTicket = async (ctx) => {
-    const result = ctx.curl('https://kyfw.12306.cn/otn/leftTicket/queryT?leftTicketDTO.train_date=2021-02-05&leftTicketDTO.from_station=HGH&leftTicketDTO.to_station=YTG&purpose_codes=ADULT')
+    const result = await ctx.curl('https://kyfw.12306.cn/otn/leftTicket/queryT?leftTicketDTO.train_date=2021-02-05&leftTicketDTO.from_station=HGH&leftTicketDTO.to_station=YTG&purpose_codes=ADULT')
     console.log(result);
 }
 
@@ -110,9 +110,9 @@ module.exports = app => {
             immediate: true
         },
         async task(ctx) {
-            getNbaList().then((res) => {
-                handToDingTalk(res, ctx);
-            });
+            // getNbaList().then((res) => {
+            //     handToDingTalk(res, ctx);
+            // });
 
             // 12306 爬取接口数据
             checkCarTicket(ctx);
