@@ -20,7 +20,7 @@ const getThirtyLater = () => {
     date.setDate(date.getDate() + 29);
     const year = date.getFullYear();
     const month = handZero(date.getMonth() + 1);
-    const day = handZero(date.getDay());
+    const day = handZero(date.getDate());
     return `${year}-${month}-${day}`;
 };
 
