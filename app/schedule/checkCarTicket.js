@@ -11,7 +11,7 @@ const getDayNumber = () => {
     const date = new Date();
     const year = date.getFullYear();
     const month = handZero(date.getMonth() + 1);
-    const day = handZero(date.getDay());
+    const day = handZero(date.getDate());
     return Number(`${year}${month}${day}`);
 }
 
