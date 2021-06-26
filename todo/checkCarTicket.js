@@ -1,4 +1,4 @@
-const sendMail = require('../core/sendEmail');
+const sendMail = require('../app/core/sendEmail');
 
 let stopSend = false;
 let nowTime = 0;
