@@ -13,7 +13,7 @@ module.exports = app => {
             immediate: true,
         },
         async task(ctx) {
-          const textWhispers = await ctx.curl('https://chp.shadiao.app/api.php');
+          const { ishan: textWhispers } = await ctx.curl('https://api.vvhan.com/api/love?type=json');
           console.log(textWhispers, '-textWhispers-')
           await ctx.curl(`https://api.day.app/BkXhvz8ctcMK3nRxsWKXdG/亲爱的文文宝贝：${textWhispers}?icon=${lovePicsIcon}`);
         }
