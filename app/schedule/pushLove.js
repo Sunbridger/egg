@@ -17,8 +17,13 @@ module.exports = app => {
             immediate: true,
         },
         async task(ctx) {
-          const textWhispers= await ctx.curl('https://api.vvhan.com/api/love?type=json');
-          console.log(textWhispers, '-textWhispers-')
+          const textWhispers= await ctx.curl('https://api.vvhan.com/api/love?type=json', {
+             // 自动解析 JSON response
+            dataType: 'json',
+            // 10 秒超时
+            timeout: 10000,
+          });
+          console.log(textWhispers.ishan, '-textWhispers-')
           await ctx.curl(`https://api.day.app/${qiaoBarkURL}/亲爱的文文宝贝：${textWhispers}?icon=${lovePicsIcon}`);
         }
     }
