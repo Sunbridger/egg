@@ -2,6 +2,8 @@ const lovePicsIcon = 'https://img.souche.com/f2e/0b0f755e8e57683c3281102c99c7013
 
 const qiaoBarkURL = 'BkXhvz8ctcMK3nRxsWKXdG';
 
+const minwenBarkURL = 'L8cz9PUpbfuCKn2H9DXYZH';
+
 // 获取情话文案
 const getWhispers = async () => {
 
